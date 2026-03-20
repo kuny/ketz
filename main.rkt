@@ -43,7 +43,6 @@
          img)
 
 (define plemoljp "PlemolJPConsoleNF")
-(define helvetica "Helvetica")
 
 (define-syntax h1
   (syntax-rules ()
