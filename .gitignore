@@ -1,6 +1,18 @@
-*~
-\#*
-.\#*
-.DS_Store
-compiled/
-/doc/
+# Vim swap files
+
+*.swp
+*.swo
+*.swm
+*.sw?
+
+# Vim backup files
+
+*.~
+*.bak
+*.tmp
+
+# Vim undo files
+
+*.un~
+*.undo
+
