@@ -26,6 +26,167 @@
 ;; Code here
 
 
+(require slideshow
+         slideshow/pict)
+
+(provide plemoljp
+         helvetica
+         h1 h2 h3 h4
+         t
+         vc vl vr
+         hc ht hb
+         tbox
+         br sp
+         -
+         ketz
+         ---
+         img)
+
+(define plemoljp "PlemolJPConsoleNF")
+(define helvetica "Helvetica")
+
+(define-syntax h1
+  (syntax-rules ()
+    [(h1 x)
+     (text x plemoljp 60)]))
+
+(define-syntax h2
+  (syntax-rules ()
+    [(h2 x)
+     (text x plemoljp 50)]))
+
+(define-syntax h3
+  (syntax-rules ()
+    [(h3 x)
+     (text x plemoljp 40)]))
+
+(define-syntax h4
+  (syntax-rules ()
+    [(h4 x)
+     (text x plemoljp 30)]))
+
+(define-syntax t+
+  (syntax-rules ()
+    [(f+ x)
+     (text x plemoljp 24)]))
+
+(define-syntax t
+  (syntax-rules ()
+    [(f x)
+     (text x plemoljp 20)]))
+
+(define-syntax t-
+  (syntax-rules ()
+    [(f- x)
+     (text x plemoljp 14)]))
+
+
+
+(define-syntax br
+  (syntax-rules ()
+    [(vspace x)
+      (blank 0 x)]))
+
+(define-syntax sp
+  (syntax-rules ()
+    [(hspace x)
+      (blank x 0)]))
+
+
+(define-syntax vc
+  (syntax-rules ()
+    [(vc x ...)
+     (vc-append x ...)]))
+
+(define-syntax vl
+  (syntax-rules ()
+    [(vl x ...)
+     (vl-append x ...)]))
+
+(define-syntax vr
+  (syntax-rules ()
+    [(vr x ...)
+     (vr-append x ...)]))
+
+
+(define-syntax hc
+  (syntax-rules ()
+    [(hc x ...)
+     (hc-append x ...)]))
+
+(define-syntax ht
+  (syntax-rules ()
+    [(ht x ...)
+     (ht-append x ...)]))
+
+(define-syntax hb
+  (syntax-rules ()
+    [(hb x ...)
+     (hb-append x ...)]))
+
+(define-syntax tbox
+  (syntax-rules ()
+    [(tbox x ...)
+     (vl-append 
+       (t x) ...)]))
+
+(define-syntax -
+  (syntax-rules ()
+    [(- x)
+     (item (t x))]))
+
+(define-syntax ketz
+  (syntax-rules (cover title name)
+    [(ketz cover (title t)
+                 (name c n))
+     (slide
+       (vc
+         (vc
+           (br 200)
+             (h1 t)
+             (h3 ""))
+         (br 200)
+         (hc
+           (sp 400)
+           (vl
+             (t+ c)
+             (t+ n)))))]
+
+    [(ketz cover (title t s)
+                 (name c n))
+     (slide
+       (vc
+         (vc
+           (br 200)
+             (h1 t)
+             (h3 s))
+         (br 200)
+         (hc
+           (sp 400)
+           (vl
+             (t+ c)
+             (t+ n)))))]
+
+    [(ketz (title t) x ...)
+     (slide
+       #:title (h3 t)
+       x ...)] 
+    [(ketz x ...)
+     (slide x ...)]))
+
+(define-syntax ---
+  (syntax-rules ()
+    [(---)
+     (filled-rectangle 800 1)]))
+
+(define-syntax img
+  (syntax-rules ()
+    [(img path s)
+     (scale (img path) s)]
+    [(img path)
+     (bitmap path)]))
+
+
 
 (module+ test
   ;; Any code in this `test` submodule runs when this file is run using DrRacket
