@@ -30,7 +30,6 @@
          slideshow/pict)
 
 (provide plemoljp
-         helvetica
          h1 h2 h3 h4
          t
          vc vl vr
